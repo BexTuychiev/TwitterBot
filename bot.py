@@ -58,3 +58,22 @@ def retrieve_tweets(username, num_of_pages=10, field=None, save=False):
         return [tweet for tweet in statuses]
     else:
         return [f'{field} of tweet with id of {tweet["tweetId"]}: {tweet[field]}' for tweet in statuses]
+
+
+def get_profile(username, save=False):
+    """
+    Retrieve all the data of a specific Twitter profile
+    :param username: Username to be scraped
+    :param save: Specifies whether to save the info or not
+    :return: a profile object with methods or a field value if field is not None
+    """
+    # Load the profile
+    user = Profile(username)
+    if save:
+        save_tweets_or_profile(user, username=username)
+
+    return user
+
+
+profile = get_profile('TheRock', save=True)
+print(profile.to_dict())
