@@ -7,12 +7,12 @@ import types
 
 def save_tweets_or_profile(generator, username):
     """
-    Given the username and a generator object containing either tweets or a user profile data, the function saves the contents to a scv file
+    Given the username and a generator object containing either tweets or a user profile data, the function saves
+    the contents to a scv file
     :param generator: A generator object containing either tweets or a profile information
     :param username: Username of a profile in question
     :return: Action > Save the contents of the generator object to a CSV.
     """
-    generator_type = type(generator)
 
     # Check the path for the DATA directory. If does not exist create the folder
     # in the top level directory
@@ -44,7 +44,8 @@ def retrieve_tweets(username, num_of_pages=10, field=None, save=False):
     Retrieve the tweets of the user with the given username up to specified page
     :param username: The screen name or the user id of the twitter user. # sign can be used to get tweets from a hashtag
     :param num_of_pages: Specifies the number of pages to retrieve. Default is 10
-    :param field: A parameter which retrieves a specific info about a tweet. Return the whole tweet dictionary if not specified
+    :param field: A parameter which retrieves a specific info about a tweet. Return the whole tweet dictionary
+    if not specified
     :param save: If true, saves each tweet as a new row in a CSV file
     :return: A list of tweets in a dictionary format.
     """
