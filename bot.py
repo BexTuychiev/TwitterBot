@@ -22,20 +22,21 @@ def save_tweets_or_profile(generator, username):
     else:
         print('Saving into "data" directory')
 
-    # Save as CSV
-    with open(f'./data/{username.lower()}_tweets.csv', 'w') as csv_file:
+        # Save as CSV
         if isinstance(generator, types.GeneratorType):
-            to_csv = [tweet for tweet in generator]
-            keys = [key for key in to_csv[0].keys()]
-            dict_writer = csv.DictWriter(csv_file, keys)
-            dict_writer.writeheader()
-            dict_writer.writerows(to_csv)
+            with open(f'./data/{username.lower()}_tweets.csv', 'w') as csv_file:
+                to_csv = [tweet for tweet in generator]
+                keys = [key for key in to_csv[0].keys()]
+                dict_writer = csv.DictWriter(csv_file, keys)
+                dict_writer.writeheader()
+                dict_writer.writerows(to_csv)
         else:
-            to_csv = generator.to_dict()
-            keys = [key for key in to_csv.keys()]
-            dict_writer = csv.DictWriter(csv_file, keys)
-            dict_writer.writeheader()
-            dict_writer.writerows(to_csv)
+            with open(f'./data/{username.lower()}_profile.csv', 'w') as csv_file:
+                to_csv = generator.to_dict()
+                keys = [key for key in to_csv.keys()]
+                dict_writer = csv.DictWriter(csv_file, keys)
+                dict_writer.writeheader()
+                dict_writer.writerow(to_csv)
 
 
 def retrieve_tweets(username, num_of_pages=10, field=None, save=False):
@@ -75,5 +76,6 @@ def get_profile(username, save=False):
     return user
 
 
-profile = get_profile('TheRock', save=True)
-print(profile.to_dict())
+if __name__ == '__main__':
+    profile = get_profile('TheRock')
+    save_tweets_or_profile(profile, 'TheRock')
