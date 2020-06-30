@@ -77,5 +77,4 @@ def get_profile(username, save=False):
 
 
 if __name__ == '__main__':
-    profile = get_profile('TheRock')
-    save_tweets_or_profile(profile, 'TheRock')
+    profile = get_profile('TheRock', save=True)
