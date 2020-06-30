@@ -23,16 +23,16 @@ def save_tweets_or_profile(generator, username):
         print('Saving into "data" directory')
 
     # Save as CSV
-    with open(f'./data/{username.lower()}_tweets.csv', 'wb') as csv_file:
+    with open(f'./data/{username.lower()}_tweets.csv', 'w') as csv_file:
         if isinstance(generator, types.GeneratorType):
             to_csv = [tweet for tweet in generator]
-            keys = to_csv[0].keys()
+            keys = [key for key in to_csv[0].keys()]
             dict_writer = csv.DictWriter(csv_file, keys)
             dict_writer.writeheader()
             dict_writer.writerows(to_csv)
         else:
             to_csv = generator.to_dict()
-            keys = to_csv.keys()
+            keys = [key for key in to_csv.keys()]
             dict_writer = csv.DictWriter(csv_file, keys)
             dict_writer.writeheader()
             dict_writer.writerows(to_csv)
@@ -58,7 +58,3 @@ def retrieve_tweets(username, num_of_pages=10, field=None, save=False):
         return [tweet for tweet in statuses]
     else:
         return [f'{field} of tweet with id of {tweet["tweetId"]}: {tweet[field]}' for tweet in statuses]
-
-
-tweets = retrieve_tweets('TheRock', num_of_pages=1, field='text')
-print(tweets)
