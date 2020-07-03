@@ -49,8 +49,8 @@ def retrieve_tweets(username, num_of_pages=10, field=None, save=False):
     :param save: If true, saves each tweet as a new row in a CSV file
     :return: A list of tweets in a dictionary format.
     """
-    possible_fields = ['tweetId', 'userId', 'username', 'tweetUrl', 'isRetweeted', 'isPinned', 'time',
-                       'text', 'replies', 'retweets', 'likes', 'entries']
+    possible_fields = {'tweetId', 'userId', 'username', 'tweetUrl', 'isRetweeted', 'isPinned', 'time',
+                       'text', 'replies', 'retweets', 'likes', 'entries'}
     # Get the tweets in a generator object
     statuses = get_tweets(username, pages=num_of_pages)
 
